@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="km">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>ថ្នាក់រៀន Quiz — ល្បែងសំណួរថ្នាក់ទី ៦–១២</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <audio id="backgroundMusic" src="assets/sounds/background-music.mp3" loop preload="auto"></audio>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" role="img">
+            <path d="M24 5 40 11v11c0 10.5-6.4 17.8-16 21C14.4 39.8 8 32.5 8 22V11l16-6Z" fill="none" stroke="currentColor" stroke-width="2.8"/>
+            <path d="M15 27h18M17 23h14M20 19h8" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <strong>ថ្នាក់រៀន Quiz</strong>
+          <span>វេទិកាសំណួរអប់រំថ្នាក់ទី ៦–១២</span>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button class="icon-btn" id="soundToggle" aria-label="បិទ/បើកសំឡេង">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h3l4 4V6l-4 4H4Zm11.5-3.5a6 6 0 0 1 0 11M15.5 9a3 3 0 0 1 0 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="icon-btn" id="themeToggle" aria-label="ប្តូររូបរាង">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.3 8.3 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn ghost" id="teacherTopBtn">
+          <svg class="btn-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19v-1.5A3.5 3.5 0 0 1 7.5 14h4A3.5 3.5 0 0 1 15 17.5V19M9.5 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm6-7v5m-2.5-2.5h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          មុខងារគ្រូ
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section id="teacherView" class="view active">
+        <div class="hero">
+          <div>
+            <span class="eyebrow">🇰🇭 សម្រាប់ថ្នាក់រៀនកម្ពុជា</span>
+            <h1>ផ្ទាំងគ្រប់គ្រងគ្រូ</h1>
+            <p>រៀបចំសំណួរ ប្ដូរមុខវិជ្ជា និងចាប់ផ្ដើមការប្រកួតសំណួរបានភ្លាមៗ។</p>
+          </div>
+          <div class="hero-badge">🎓 ៦–១២</div>
+        </div>
+
+        <div class="dashboard-grid">
+          <section class="panel setup-panel">
+            <div class="panel-head">
+              <div><span class="section-kicker">01</span><h2>ជ្រើសរើសព័ត៌មានមេរៀន</h2></div>
+              <span id="saveStatus" class="save-status">💾 រក្សាទុកដោយស្វ័យប្រវត្តិ</span>
+            </div>
+            <div class="field-grid">
+              <label>🎓 ជ្រើសរើសថ្នាក់
+                <select id="gradeSelect"></select>
+              </label>
+              <label>📚 ជ្រើសរើសមុខវិជ្ជា
+                <select id="subjectSelect"></select>
+              </label>
+            </div>
+            <div class="settings-card">
+              <div class="settings-title">⚙️ ការកំណត់ការប្រកួត</div>
+              <div class="settings-grid">
+                <label>⏱️ ពេលវេលា
+                  <select id="timerSelect">
+                    <option value="15">15 វិនាទី</option><option value="20">20 វិនាទី</option>
+                    <option value="30" selected>30 វិនាទី</option><option value="45">45 វិនាទី</option>
+                    <option value="60">60 វិនាទី</option><option value="90">90 វិនាទី</option>
+                  </select>
+                </label>
+                <label>⚡ ពិន្ទុតាមល្បឿន
+                  <select id="speedBonus"><option value="on">បើក</option><option value="off">បិទ</option></select>
+                </label>
+                <label>💡 បង្ហាញចម្លើយត្រឹមត្រូវ
+                  <select id="revealCorrect"><option value="on">បើក</option><option value="off">បិទ</option></select>
+                </label>
+                <label>🔀 ចៃដន្យសំណួរ
+                  <select id="shuffleQuestions"><option value="off">បិទ</option><option value="on">បើក</option></select>
+                </label>
+                <label>🔀 ចៃដន្យចម្លើយ
+                  <select id="shuffleAnswers"><option value="off">បិទ</option><option value="on">បើក</option></select>
+                </label>
+              </div>
+            </div>
+          </section>
+
+          <aside class="panel quick-panel">
+            <span class="section-kicker">02</span>
+            <h2>ចាប់ផ្ដើមរហ័ស</h2>
+            <p>មិនទាន់មានសំណួរ? សាកល្បងសំណួរឧទាហរណ៍ ឬបង្កើតសំណួរផ្ទាល់ខ្លួន។</p>
+            <button class="btn primary wide" id="demoBtn">✨ សំណួរឧទាហរណ៍</button>
+            <button class="btn secondary wide" id="startBtn">🚀 ចាប់ផ្តើមលេង</button>
+            <button class="btn ghost wide" id="clearSavedBtn">🗑️ លុប Quiz ដែលបានរក្សាទុក</button>
+            <div class="mini-stat"><span>សំណួរបច្ចុប្បន្ន</span><strong id="questionCount">0</strong></div>
+          </aside>
+        </div>
+
+        <section class="panel questions-panel">
+          <div class="panel-head">
+            <div><span class="section-kicker">03</span><h2>អ្នកបង្កើតសំណួរ</h2></div>
+            <button class="btn secondary" id="addQuestionBtn">➕ បន្ថែមសំណួរ</button>
+          </div>
+          <div id="questionEditorList" class="editor-list"></div>
+          <div id="emptyEditor" class="empty-state">
+            <div class="empty-icon">📝</div>
+            <h3>មិនទាន់មានសំណួរ</h3>
+            <p>ចុច «បន្ថែមសំណួរ» ឬ «សំណួរឧទាហរណ៍» ដើម្បីចាប់ផ្តើម។</p>
+          </div>
+        </section>
+      </section>
+
+      <section id="countdownView" class="view game-view">
+        <div class="countdown-wrap">
+          <span class="eyebrow">🇰🇭 ត្រៀមខ្លួន</span>
+          <div id="countdownNumber" class="countdown-number">3</div>
+          <h2 id="countdownLabel">ត្រៀមចាប់ផ្ដើម</h2>
+        </div>
+      </section>
+
+      <section id="quizView" class="view game-view">
+        <div class="quiz-shell">
+          <div class="quiz-top">
+            <div><span class="quiz-subject" id="quizSubject">គណិតវិទ្យា</span><span class="quiz-grade" id="quizGrade">ថ្នាក់ទី ៦</span></div>
+            <div class="quiz-score">⭐ <strong id="scoreDisplay">0</strong> ពិន្ទុ</div>
+            <div class="timer" id="timerCircle"><span>⏱️</span><strong id="timerDisplay">30</strong></div>
+          </div>
+          <div class="progress-meta"><span id="progressText">សំណួរ ១ / ៥</span><span id="progressPct">20%</span></div>
+          <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          <article class="question-card" id="questionCard">
+            <div id="questionImageWrap" class="question-image-wrap hidden"><img id="questionImage" alt="រូបភាពសម្រាប់សំណួរ"></div>
+            <div class="difficulty" id="difficultyBadge">🟢 ងាយ</div>
+            <h1 id="questionText" class="question-text"></h1>
+          </article>
+          <div id="answers" class="answers-grid"></div>
+          <div id="feedback" class="feedback hidden"></div>
+          <div class="next-row">
+            <button class="btn next hidden" id="nextBtn">
+              បន្ទាប់
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </div>
+        <div id="effects" class="effects" aria-hidden="true"></div>
+      </section>
+
+      <section id="resultView" class="view game-view">
+        <div class="result-card">
+          <div id="resultEffects" class="result-effects">✨</div>
+          <span class="eyebrow">ការប្រកួតបានបញ្ចប់</span>
+          <h1>🏆 បញ្ចប់ការប្រកួត!</h1>
+          <p class="result-lead">អស្ចារ្យ! 🎉</p>
+          <div class="final-score"><span>ពិន្ទុសរុប</span><strong id="finalScore">0</strong><small>⭐</small></div>
+          <div class="stats-grid">
+            <div><strong id="correctCount">0 / 0</strong><span>✅ ត្រឹមត្រូវ</span></div>
+            <div><strong id="wrongCount">0 / 0</strong><span>❌ ខុស</span></div>
+            <div><strong id="accuracy">0%</strong><span>🎯 ភាគរយត្រឹមត្រូវ</span></div>
+          </div>
+          <div class="result-actions">
+            <button class="btn primary" id="playAgainBtn">🔄 លេងម្តងទៀត</button>
+            <button class="btn ghost" id="resultTeacherBtn">👩‍🏫 ត្រឡប់ទៅមុខងារគ្រូ</button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="toast" class="toast" role="status"></div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
